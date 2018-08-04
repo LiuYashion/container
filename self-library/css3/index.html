@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+  <title>css3 lib</title>
+  <link rel="stylesheet" href="./css/animate.css" />
+  <link rel="stylesheet" href="./css/common.css" />
+  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+
+<body>
+  <h1 class="title">my animate</h1>
+  <div class="container">
+
+    <ul class="ani-box">
+      <li class="animated ani-1 shake">111</li>
+      <li class="animated ani-2 bounceIn">111</li>
+      <li class="animated ani-3 toastInDown">111</li>
+      <li class="animated ani-4 toastInUp">111</li>
+      <li class="animated ani-5 flash">111</li>
+      <li class="animated ani-6 flipInX">111</li>
+    </ul>
+
+    <div class="btn-lists">
+      <span class="btn" index="1" type="shake"></span>
+      <span class="btn" index="2" type="bounceIn"></span>
+      <span class="btn" index="3" type="toastInDown"></span>
+      <span class="btn" index="4" type="toastInUp"></span>
+      <span class="btn" index="5" type="flash"></span>
+      <span class="btn" index="6" type="flipInX"></span>
+    </div>
+
+  </div>
+</body>
+  
+
+<script>
+
+$(".btn").on('click', (e)=>{
+  
+  let index = e.target.attributes.index.value
+  let type  = e.target.attributes.type.value
+
+  $(`.ani-${index}`).removeClass(type)
+  setTimeout(() => {
+    $(`.ani-${index}`).addClass(type)
+  }, 200);
+
+})
+
+
+
+
+
+
+
+
+/** 
+  函数节流 
+  指定时间间隔内只会执行一次任务
+*/
+function throttle(fn, interval = 800){
+  let locked = false;
+  return function(){
+    if(locked) return ;
+    locked = true;
+    setTimeout(() => {
+      fn.apply(this, arguments)
+      locked = false;
+    }, interval);
+  }
+}
+
+/** 
+函数防抖 
+频繁触发的情况下，只有任务触发的间隔超过指定间隔的时候，任务才会执行
+*/
+function debounce(fn, interval = 800){
+  let timeout = null;
+  return function () {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      fn.apply(this, arguments);
+    }, interval);
+  };
+}
+
+
+
+let clickEvent = function(){
+  console.log('xxxxxxxxxxx')
+}
+
+$(".title").on('click', debounce(clickEvent, 1000))
+
+
+</script>
+
+</html>
