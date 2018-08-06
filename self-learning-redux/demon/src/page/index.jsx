@@ -2,9 +2,15 @@ import React from 'react';
 
 export default class Root extends React.Component {
   render() {
+
+    let store = this.props.store
+
     return (
-      <div style={{textAlign: 'center'}}>
+      <div>
         <h1>Hello World</h1>
+        <h1>{ store.getState() }</h1>
+        <button onClick={ this.props.onIncrease }>Increase</button>
+        <button onClick={ this.props.onDecrease }>Decrease</button>
       </div>);
   }
 }
