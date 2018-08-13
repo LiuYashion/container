@@ -11,15 +11,17 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { connect } from 'react-redux';
 
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 
-
-const increment = () => {
+const increment = (xxx) => {
+  console.log(xxx)
   return { type: 'INCREMENT' }
 };
 const decrement = () => {
   return { type: 'DECREMENT' }
 };
+
 class App extends React.Component {
   render() {
 
@@ -66,7 +68,10 @@ const reducer = function(state=0, action={}) {
   }
 }
 
-const store = createStore(reducer);
+const store = createStore(
+  reducer,
+  composeWithDevTools()
+);
 
 
 

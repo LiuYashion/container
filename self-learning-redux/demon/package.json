@@ -36,6 +36,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
-    "file-loader": "^1.1.11"
+    "file-loader": "^1.1.11",
+    "redux-devtools-extension": "^2.13.5"
   }
 }
