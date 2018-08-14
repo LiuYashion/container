@@ -1,10 +1,12 @@
 
 /** 编译出html的插件 */
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 /** 抽离css文件的插件 */
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 /** 删除打包文件的插件 */
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+/** 复制静态文件的插件 */
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 var webpack = require('webpack')
 var path = require('path')
@@ -24,7 +26,9 @@ module.exports = {
     "tmp": './src/tmp.js',
   },
   devServer: {
-    port: 8080,
+    port: 8089,
+    // publicPath: './src',
+    host: '0.0.0.0', 
     open: true,
     hot: true
   },
@@ -34,7 +38,13 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(pathsToClean),
-
+    
+    new CopyWebpackPlugin([{
+      from: path.resolve(__dirname, 'static'),
+      to: path.resolve(__dirname, 'dist/static'),
+      ignore: ['.*']
+    }]),
+    
     new HtmlWebpackPlugin({
       template: './src/app.html',
       filename: 'app.html',
@@ -67,9 +77,8 @@ module.exports = {
 
     new ExtractTextPlugin({
       filename: 'style.css',
-
       /** 热替换的时候就加上, 编译时去掉 */
-      disable: true
+      // disable: true
     }),
 
     /** 热替换 */
@@ -99,12 +108,10 @@ module.exports = {
         loader: 'babel-loader', 
         exclude: /node_modules/
       },{
-        test: /\.(png|jpg|gif)$/,
-        use: [
-          {
-            loader: 'file-loader',
-          },
-        ]
+        test: /\.(png|jpg|gif|pdf)$/,
+        use: [{
+          loader: 'file-loader',
+        }]
       }
     ]
   }

@@ -13,10 +13,10 @@
 
 # code
 ```jsx
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './page/index.jsx';
-
 
 import { createStore } from 'redux';
 
@@ -31,7 +31,6 @@ const reducer = function(state=0, action={}) {
 }
 
 const store = createStore(reducer);
-
 
 const render = () => {
   ReactDOM.render(

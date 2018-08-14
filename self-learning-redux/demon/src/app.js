@@ -12,31 +12,35 @@ import { Provider } from 'react-redux';
 import { connect } from 'react-redux';
 
 import { composeWithDevTools } from 'redux-devtools-extension'
+import Iframe from 'react-iframe'
 
-
-const increment = (xxx) => {
-  console.log(xxx)
+const increment = () => {
   return { type: 'INCREMENT' }
 };
 const decrement = () => {
   return { type: 'DECREMENT' }
 };
 
+
 class App extends React.Component {
   render() {
-
     return (
       <div>
         <h1>Hello World</h1>
         <h1>{ this.props.counter }</h1>
         <button onClick={ this.props.onIncrease }>Increase</button>
         <button onClick={ this.props.onDecrease }>Decrease</button>
+        <br/>
+        <div className='container' onClick={this.goto}>
+          
+        </div>
       </div>
     );
   }
+  goto(){
+    window.open('./static/user.pdf')
+  }
 }
-
-
 
 
 const mapStateToProps = (state) => {
