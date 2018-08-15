@@ -21,14 +21,12 @@ var stage = process.env.NODE_ENV;
 
 module.exports = {
   entry: {
-    "app": './src/app.js',
-    "log": './src/log.js',
-    "tmp": './src/tmp.js',
+    "app": './src/index.js',
   },
   devServer: {
     port: 8089,
     // publicPath: './src',
-    host: '0.0.0.0', 
+    // host: '0.0.0.0', 
     open: true,
     hot: true
   },
@@ -46,7 +44,7 @@ module.exports = {
     }]),
     
     new HtmlWebpackPlugin({
-      template: './src/app.html',
+      template: './src/index.html',
       filename: 'app.html',
       minify: {
         collapseWhitespace: true,
@@ -55,25 +53,25 @@ module.exports = {
       excludeChunks: ['log']
     }),
 
-    new HtmlWebpackPlugin({
-      template: './src/log.html',
-      filename: 'log.html',
-      minify: {
-        collapseWhitespace: true,
-      },
-      hash: true,
-      chunks: ['log']
-    }),
+    // new HtmlWebpackPlugin({
+    //   template: './src/log.html',
+    //   filename: 'log.html',
+    //   minify: {
+    //     collapseWhitespace: true,
+    //   },
+    //   hash: true,
+    //   chunks: ['log']
+    // }),
 
-    new HtmlWebpackPlugin({
-      template: './src/tmp.html',
-      filename: 'tmp.html',
-      minify: {
-        collapseWhitespace: true,
-      },
-      hash: true,
-      chunks: ['tmp']
-    }),
+    // new HtmlWebpackPlugin({
+    //   template: './src/tmp.html',
+    //   filename: 'tmp.html',
+    //   minify: {
+    //     collapseWhitespace: true,
+    //   },
+    //   hash: true,
+    //   chunks: ['tmp']
+    // }),
 
     new ExtractTextPlugin({
       filename: 'style.css',
