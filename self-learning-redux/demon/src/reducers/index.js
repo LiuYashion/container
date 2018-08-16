@@ -2,6 +2,8 @@
 
 
 
+
+
 /** 定义reducer处理state */
 export const reducer = function(state=0, action={}) {
   switch(action.type) {
