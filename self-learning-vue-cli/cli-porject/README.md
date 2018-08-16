@@ -1,6 +1,6 @@
-# cli-porject
+# anq-loan
 
-> A Vue.js project
+> anq vue project
 
 ## Build Setup
 

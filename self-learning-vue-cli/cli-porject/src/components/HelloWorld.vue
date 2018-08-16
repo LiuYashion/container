@@ -84,8 +84,13 @@
 </template>
 
 <script>
+import { getquestion } from '@/service';
+
 export default {
   name: 'HelloWorld',
+  mounted: () => {
+    getquestion();
+  },
   data() {
     return {
       msg: 'Welcome to Your Vue.js App',
