@@ -23,8 +23,6 @@ import reducer from './reducers'
 
 import App from './app'
 
-
-
 /** 将App和store关联起来 */
 const render = () => {
   ReactDOM.render(

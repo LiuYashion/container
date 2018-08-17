@@ -1,4 +1,4 @@
-import { json2string } from './storage';
+import { json2string } from '@/utils/storage';
 
 export default async (_url = '', data = {}, _type = 'GET', method = 'fetch') => {
   let url = _url;
