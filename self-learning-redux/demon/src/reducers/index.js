@@ -1,11 +1,11 @@
 
 
-
+import { combineReducers } from 'redux';
 
 
 
 /** 定义reducer处理state */
-export const reducer = function(state=0, action={}) {
+const reducer = function(state=0, action={}) {
   switch(action.type) {
     case 'INCREMENT':
       return state + 1;
@@ -14,3 +14,10 @@ export const reducer = function(state=0, action={}) {
     default: return state;
   }
 }
+
+
+const rootReducer = combineReducers({
+  reducer
+});
+
+export default rootReducer;

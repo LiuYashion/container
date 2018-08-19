@@ -1,6 +1,8 @@
 
 
-
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
 
 
 class App extends React.Component {
@@ -25,10 +27,6 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(types, dispatch);
 };
 const Root =  connect(mapStateToProps, mapDispatchToProps)(App);
-
-
-
-
 
 
 export default Root
