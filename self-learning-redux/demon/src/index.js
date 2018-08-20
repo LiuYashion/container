@@ -1,26 +1,21 @@
 
-import './style/style.scss';
-import './style/style.less';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import { createStore, applyMiddleware  } from 'redux';
+import App from './app'
 import { Provider } from 'react-redux';
-import { connect } from 'react-redux';
 
-import { composeWithDevTools } from 'redux-devtools-extension'
-import { bindActionCreators } from 'redux';
+// import { connect } from 'react-redux';
+// import { composeWithDevTools } from 'redux-devtools-extension'
+// import { bindActionCreators } from 'redux';
+// import { createStore, applyMiddleware  } from 'redux';
 
+import './style/style.scss';
+import './style/style.less';
 
-/////////////////////////////////
-
-import * as types from './actions'
-
-import reducer from './reducers'
 
 import store from './store'
-import App from './app'
+
 
 /** 将App和store关联起来 */
 const render = () => {

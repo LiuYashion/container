@@ -8,6 +8,6 @@ export default {
     state.loadingState = { show: true, info };
   },
   [HIDE_LOADING](state, user) {
-    state.loadingState = { show: false, info: 'loading', user };
+    state.loadingState = { show: false, info: 'loaded', user };
   },
 };

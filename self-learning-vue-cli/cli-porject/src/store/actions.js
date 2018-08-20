@@ -9,7 +9,7 @@ import {
 
 export default {
   async getTestUser({ commit, state }) {
-    commit(SHOW_LOADING);
+    commit(SHOW_LOADING, 'querying');
     await getquestion().then((res) => {
       console.log(res);
       commit(HIDE_LOADING, state);
