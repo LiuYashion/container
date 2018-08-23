@@ -21,7 +21,7 @@ var stage = process.env.NODE_ENV;
 
 module.exports = {
   entry: {
-    "app": './src/index.js',
+    "app": path.resolve(__dirname, 'src/index.js'),
   },
   devServer: {
     port: 8089,
@@ -33,6 +33,12 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: './js/[name].bundle.js',
+  },
+  resolve: {
+    extensions: ['.js', '.vue'],
+    alias: {
+      '@': path.resolve(__dirname, 'src')
+    }
   },
   plugins: [
     new CleanWebpackPlugin(pathsToClean),
@@ -85,6 +91,15 @@ module.exports = {
   ],
   module: {
     rules: [
+      // {
+      //   test: /\.(js|jsx)$/,
+      //   loader: 'eslint-loader',
+      //   enforce: 'pre',
+      //   exclude: /node_modules/,
+      //   options: {
+      //     formatter: require('eslint-friendly-formatter'),
+      //   }
+      // },
       {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({

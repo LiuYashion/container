@@ -1,18 +1,6 @@
 <template>
-  <div>
-    <my-header/>
-
-    <my-bodyer hasFooter='true'>
-      <div slot='body-slot'>
-        <h1>{{ msg }}</h1>
-        <h1>{{ msg }}</h1>
-        <h3>{{ loading.show }}</h3>
-        <h3>????????????????</h3>
-        <h3 @click="showTest">show toastInDown</h3>
-        <router-view/>
-      </div>
-    </my-bodyer>
-
+  <div class="hello">
+    33333333333333333333333
   </div>
 </template>
 
@@ -20,19 +8,12 @@
 // import { getquestion } from '@/service';
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
 
-import myHeader from '@/components/common/header';
-import myBodyer from '@/components/common/body';
-import myFooter from '@/components/common/footer';
-
 export default {
   name: 'HelloWorld',
   data() {
     return {
       msg: 'Home',
     };
-  },
-  components: {
-    myHeader, myBodyer, myFooter,
   },
   computed: {
     ...mapState([
@@ -42,21 +23,15 @@ export default {
   methods: {
     ...mapActions([
       'anqLoading',
-      'anqWarning',
     ]),
     ...mapMutations([
       'SHOW_LOADING',
       'HIDE_LOADING',
-      'SHOW_WARNING',
-      'HIDE_WARNING',
     ]),
     ...mapGetters([
       'FILTER_ODD_ITEM',
       'FILTER_EVEN_ITEM',
     ]),
-    showTest() {
-      this.anqWarning('!!!!!!!!');
-    },
   },
   mounted() {
     this.anqLoading();
@@ -69,7 +44,6 @@ export default {
 <style scoped>
 h1, h2 {
   font-weight: normal;
-  border-radius: 4px;
 }
 ul {
   list-style-type: none;

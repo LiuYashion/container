@@ -1,0 +1,9 @@
+
+
+export const INCREMENT = 'INCREMENT'
+export const DECREMENT = 'DECREMENT'
+
+
+export const LOAD_USER_FINISHED = 'LOAD_USER_FINISHED'
+export const LOAD_USER_FILLED   = 'LOAD_USER_FILLED'
+export const LOAD_USER_PENDING  = 'LOAD_USER_PENDING'

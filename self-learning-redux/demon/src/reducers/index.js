@@ -2,22 +2,14 @@
 
 import { combineReducers } from 'redux';
 
+import counter from '@/reducers/reducer/counter'
+import user from '@/reducers/reducer/user'
 
-
-/** 定义reducer处理state */
-const reducer = function(state=0, action={}) {
-  switch(action.type) {
-    case 'INCREMENT':
-      return state + 1;
-    case 'DECREMENT':
-      return state - 1;
-    default: return state;
-  }
-}
 
 
 const rootReducer = combineReducers({
-  reducer
+  counter,
+  user
 });
 
 export default rootReducer;

@@ -8,7 +8,15 @@ Vue.use(Vuex);
 
 const state = {
   author: 'LiuYaXiong',
-  loadingState: {
+  warning: {
+    state: false,
+    text: '系统繁忙请稍后再试',
+  },
+  inform: {
+    state: true,
+    text: '系统繁忙请稍后再试',
+  },
+  loading: {
     show: true,
     info: 'loaded',
     user: {},

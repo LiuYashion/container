@@ -1,13 +1,16 @@
-import {
-  SHOW_LOADING,
-  HIDE_LOADING,
-} from '@/store/mutation-type';
+import { SHOW_LOADING, HIDE_LOADING, SHOW_WARNING, HIDE_WARNING } from '@/store/mutation-type';
 
 export default {
   [SHOW_LOADING](state, info = 'loading') {
-    state.loadingState = { show: true, info };
+    state.loading = { show: true, info };
   },
   [HIDE_LOADING](state, user) {
-    state.loadingState = { show: false, info: 'loaded', user };
+    state.loading = { show: false, info: 'loaded', user };
+  },
+  [SHOW_WARNING](state, text = '') {
+    state.warning = { state: true, text };
+  },
+  [HIDE_WARNING](state) {
+    state.warning = { state: false, text: '' };
   },
 };

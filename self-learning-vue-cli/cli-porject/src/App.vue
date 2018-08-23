@@ -1,18 +1,27 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <keep-alive>
+        <router-view v-if="$route.meta.keepAlive"/>
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"/>
+    <svg-icon></svg-icon>
   </div>
 </template>
 
 <script>
+import svgIcon from '@/components/common/svg';
+
 export default {
-  name: 'App',
+  components: {
+    svgIcon,
+  },
 };
 </script>
 
 <style>
 @import './style/animation.scss';
+@import './style/reset.scss';
+@import './style/common.scss';
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -20,5 +29,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  overflow: hidden;
 }
+
 </style>
