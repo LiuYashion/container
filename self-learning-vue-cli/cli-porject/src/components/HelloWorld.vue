@@ -57,10 +57,50 @@ export default {
     showTest() {
       this.anqWarning('!!!!!!!!');
     },
+
+    task1() {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          console.log('1', '我是第一个任务，必须第一个执行');
+          resolve('done');
+        }, 3000);
+      });
+    },
+    task2() {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          console.log('2', '第二个任务');
+          resolve('done');
+        }, 1000);
+      });
+    },
+    task3() {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          console.log('3', '第三个任务');
+          reject('error');
+        }, 1000);
+      });
+    },
+    task4() {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          console.log('4', '第四个任务');
+          resolve('done');
+        }, 2000);
+      });
+    },
+    async allTasks() {
+      await this.task1();
+      await this.task2();
+      await this.task3();
+      await this.task4();
+    },
   },
   mounted() {
     this.anqLoading();
     console.log(this.FILTER_ODD_ITEM());
+    // this.allTasks();
   },
 };
 </script>

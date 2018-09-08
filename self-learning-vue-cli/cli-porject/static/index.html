@@ -1,0 +1,111 @@
+
+<!-- saved from url=(0040)http://47.105.49.232:8080/jssdkDemo.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Unity Web View Demo</title>
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" defer="" async="" src="./Unity Web View Demo_files/uaest.js.下载"></script><script type="text/javascript" src="./Unity Web View Demo_files/xfd.jssdk-1.1.js.下载"></script>
+<style type="text/css">
+body {
+	background-color: #f0f0f2;
+	margin: 0;
+	padding: 0;
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+div {
+	width: 250px;
+	margin: 0.5em auto;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 1em;
+	border: 1px solid #27AE60;
+}
+
+a:link, a:visited {
+	color: #27AE60;
+	text-decoration: none;
+}
+
+@media ( max-width : 250px) {
+	body {
+		background-color: #fff;
+	}
+	div {
+		width: auto;
+		margin: 0 auto;
+		border-radius: 0;
+		padding: 1em;
+	}
+}
+</style>
+<style>@font-face{font-family:uc-nexus-iconfont;src:url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.woff) format('woff'),url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.ttf) format('truetype')}</style></head>
+
+<body>
+	<div>
+		<h1>jsdk demo</h1>
+		<a href="javascript:phones();">通讯录上传</a><br> <br> 
+		<a href="javascript:callrecord();">通话记录上传</a><br> <br> 
+		<a href="javascript:cgps();">提交用户地理位置</a><br> <br> 
+		<a href="javascript:applist();">App列表上传</a><br> <br> 
+		<a href="javascript:ocr();">OCR</a><br> <br> 
+		<a href="javascript:face();">人脸识别</a><br> <br> 
+		<a href="javascript:taskFinish();">任务完成</a><span>task type:</span><input id="taskType" style="width:30px;"><br> <br> 
+		<a href="javascript:close();">关闭</a>
+	</div>
+
+	<script type="text/javascript">
+	
+		function phones() {
+			jxfd.phones(function(data) {
+				alert(JSON.stringify(data));
+			});
+		//jxfd.phonescallback("{'code':0}");
+		}
+		function callrecord() {
+			jxfd.callrecord(function(data) {
+				alert(JSON.stringify(data));
+			});
+		}
+		function cgps() {
+			jxfd.cgps(function(data) {
+				alert(JSON.stringify(data));
+			});
+		}
+		function applist() {
+			jxfd.applist(function(data) {
+				alert(JSON.stringify(data));
+			});
+		}
+		function ocr() {
+			jxfd.ocr(function(data) {
+				alert(JSON.stringify(data));
+			});
+		}
+		function face() {
+			jxfd.face(function(data) {
+				alert(JSON.stringify(data));
+			});
+		}
+		function taskFinish() {
+			var taskType = document.getElementById("taskType").value;
+			if (!!!taskType) {
+				taskType = 0;
+			}
+			console.log(taskType);
+			jxfd.taskFinish({
+				taskType : taskType
+			});
+		}
+	
+		function close() {
+			jxfd.close();
+		}
+	</script>
+
+
+
+</body></html>
