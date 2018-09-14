@@ -177,6 +177,7 @@ Store.prototype.registerModule    = function(){}
 Store.prototype.unregisterModule  = function(){}
 Store.prototype.hotUpdate         = function(){}
 
+// 保证方法同步
 Store.prototype._withCommit = function _withCommit (fn) {
   var committing = this._committing;
   this._committing = true;
@@ -185,5 +186,11 @@ Store.prototype._withCommit = function _withCommit (fn) {
 };
 
 
-/**  */
+/** store类的代码结束 */
 Object.defineProperties( Store.prototype, prototypeAccessors );
+
+
+/**
+ * 下面是一些函数
+ */
+
