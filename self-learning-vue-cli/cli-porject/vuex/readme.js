@@ -186,11 +186,106 @@ Store.prototype._withCommit = function _withCommit (fn) {
 };
 
 
+
+
 /** store类的代码结束 */
 Object.defineProperties( Store.prototype, prototypeAccessors );
 
 
+/*******************************************************************/
+/*******************************************************************/
+/*******************************************************************/
+/*******************************************************************/
+/*******************************************************************/
+/*******************************************************************/
+/*******************************************************************/
+/*******************************************************************/
+/*******************************************************************/
+/*******************************************************************/
+/*******************************************************************/
+/*******************************************************************/
+/*******************************************************************/
+/*******************************************************************/
+/*******************************************************************/
+
+
+
+
 /**
- * 下面是一些函数
+ * 下面是一些辅助函数
  */
 
+
+// resetStore 热更新 注销模块的时候使用到
+function resetStore (store, hot) {
+  store._actions = Object.create(null);
+  store._mutations = Object.create(null);
+  store._wrappedGetters = Object.create(null);
+  store._modulesNamespaceMap = Object.create(null);
+  var state = store.state;
+  // init all modules
+  installModule(store, state, [], store._modules.root, true);
+  // reset vm
+  resetStoreVM(store, state, hot);
+}
+
+function forEachValue (obj, fn) {
+  Object.keys(obj).forEach(function (key) { 
+    return fn(obj[key], key); 
+  });
+}
+
+// resetStoreVM 
+function resetStoreVM (store, state, hot) {
+
+  // 保存原有store的_vm
+  var oldVm = store._vm;
+
+  // bind store public getters
+  store.getters = {};
+  var wrappedGetters = store._wrappedGetters;
+  var computed = {};
+
+  //  遍历这个对象，获取每个getter的key和对应的方法
+  //  将getter以key-value的形式缓存在变量computed中，其实后面就是将getter作为vue实例中的计算属性
+  forEachValue(wrappedGetters, function (fn, key) {
+    computed[key] = function () { 
+      return fn(store); 
+    };
+    Object.defineProperty(store.getters, key, {
+      get: function () { 
+        return store._vm[key]; 
+      },
+      enumerable: true 
+    });
+  });
+
+  // use a Vue instance to store the state tree
+  // suppress warnings just in case the user has added
+  // some funky global mixins
+  var silent = Vue.config.silent;
+  Vue.config.silent = true;
+  store._vm = new Vue({
+    data: {
+      $$state: state
+    },
+    computed: computed
+  });
+  Vue.config.silent = silent;
+
+  // enable strict mode for new vm
+  if (store.strict) {
+    enableStrictMode(store);
+  }
+
+  if (oldVm) {
+    if (hot) {
+      // dispatch changes in all subscribed watchers
+      // to force getter re-evaluation for hot reloading.
+      store._withCommit(function () {
+        oldVm._data.$$state = null;
+      });
+    }
+    Vue.nextTick(function () { return oldVm.$destroy(); });
+  }
+}

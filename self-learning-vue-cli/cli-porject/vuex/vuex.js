@@ -61,6 +61,9 @@ function devtoolPlugin (store) {
   });
 }
 
+
+
+
 /**
  * Get the first item that pass the test
  * by second argument function
@@ -498,7 +501,11 @@ Store.prototype._withCommit = function _withCommit (fn) {
   this._committing = committing;
 };
 
+
 Object.defineProperties( Store.prototype, prototypeAccessors );
+
+
+
 
 function genericSubscribe (fn, subs) {
   if (subs.indexOf(fn) < 0) {
